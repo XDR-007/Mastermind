@@ -38,8 +38,8 @@ class Mastermind
 
                 test_array[0] = 3;
                 test_array[1] = 2;
-                test_array[2] = 5;
-                test_array[3] = 6;
+                test_array[2] = 3;
+                test_array[3] = 2;
 
             }
 
@@ -122,14 +122,20 @@ class Mastermind
 
                 }
 
-                    if (contains < minuses){
+                    minuses = contains - pluses;
+
+                    //if(contains <= (pluses - minuses)){
+                        //minuses = contains;
+                    //}
+
+                    if (contains <= minuses){
                         minuses = contains;
                     }else if (contains < minuses){
                         minuses = contains;
                     }
 
 
-                    minuses = contains - pluses;
+                    
                     
                     //Console.Write(pluses + " " + minuses);
 
