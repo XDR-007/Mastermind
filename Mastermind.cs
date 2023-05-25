@@ -12,13 +12,14 @@ class Mastermind
             int contains = 0;
             int pluses = 0;
             int minuses = 0;
+            int sum = 0;
 
 
             int[] random_num_array = new int[4];
 
             Random rnd = new Random();
 
-            bool test = true; //set to fals for productioon
+            bool test = false; //set to fals for productioon
 
 
             int d1 = rnd.Next(1, 7);   // creates a number between 1 and 6
@@ -36,16 +37,16 @@ class Mastermind
             if (test)
             {
 
-                test_array[0] = 3;
+                test_array[0] = 1;
                 test_array[1] = 2;
                 test_array[2] = 3;
-                test_array[3] = 2;
+                test_array[3] = 1;
 
             }
 
             //for testing only
 
-            bool debug = true; //set too fals for production
+            bool debug = false; //set too fals for production
 
             string str_code = string.Join("", random_num_array); //change to random_num_array for final product
 
@@ -60,7 +61,7 @@ class Mastermind
             int i = 0;
 
             StringBuilder score_SB = new StringBuilder("");
-            while (i < 11) //change to 11
+            while (i < 12) //change to 12
             {
                 string input;
                 Console.WriteLine("\nEnter four digit integer: ");
@@ -90,6 +91,7 @@ class Mastermind
                 contains = 0;
                 pluses = 0;
                 minuses = 0;
+                sum = 0;
 
                 for (int k = 0; k < 4; k++)
                 {
@@ -105,37 +107,33 @@ class Mastermind
                     {
 
                         pluses++;
+                        if(debug)
                         Console.Write("\n pluses: " + pluses + "\n");
                         //score_SB.Append("+");
 
                     }
-                    else if (test_array.Contains(int.Parse(input_char))) // change to this condition for final product random_num_array.Contains(int.Parse(input_char))
+                    else if (random_num_array.Contains(int.Parse(input_char))) // change to this condition for final product random_num_array.Contains(int.Parse(input_char))
                     {
 
                         // Console.Write(int.Parse(input_char));
                         //score_SB.Append("-");
 
                         contains++;
+                        if(debug)
                          Console.Write("\n contains: " + contains + "\n");
                         
                     }
 
-                }
-
-                    minuses = contains - pluses;
-
-                    //if(contains <= (pluses - minuses)){
-                        //minuses = contains;
-                    //}
-
-                    if (contains <= minuses){
-                        minuses = contains;
-                    }else if (contains < minuses){
-                        minuses = contains;
+                    if(pluses <= contains){
+                        sum += pluses;
+                    }else if (contains < pluses ){
+                        sum += contains;
                     }
 
+                }
 
-                    
+                    minuses = sum - pluses;
+                 
                     
                     //Console.Write(pluses + " " + minuses);
 
